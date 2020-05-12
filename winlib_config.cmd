@@ -53,4 +53,7 @@ Set "USF=HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Fold
 )>NUL
 
 ::Shutdown /R /D P:2:4
-pause
+::pause
+timeout /t 1 /nobreak >nul
+
+start explorer.exe
