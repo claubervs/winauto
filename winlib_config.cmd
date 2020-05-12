@@ -1,22 +1,38 @@
 @Echo Off
 
+taskkill /f /im explorer.exe
 Echo "Setting Windows Library folders as requested..."
-
+timeout /t 2 /nobreak >nul
 :: Drive letter
-Set "DRIVE=Q"
+Set "PATH=Q:\"
 :: Folders from library
-Set "3DOBJ=%DRIVE%:\3D Objects"
-Set "CONT=%DRIVE%:\Contacts"
-Set "DESK=%DRIVE%:\Desktop"
-Set "DOCS=%DRIVE%:\Documents"
-Set "DLOAD=%DRIVE%:\Downloads"
-Set "FAVS=%DRIVE%:\Favorites"
-Set "LINKS=%DRIVE%:\Links"
-Set "MUSIC=%DRIVE%:\Music"
-Set "PICS=%DRIVE%:\Pictures"
-Set "GAMES=%DRIVE%:\Saved Games"
-Set "SRCH=%DRIVE%:\Searches"
-Set "VIDS=%DRIVE%:\Videos"
+Set "3DOBJ=%PATH%\3D Objects"
+Set "CONT=%PATH%\Contacts"
+Set "DESK=%PATH%\Desktop"
+Set "DOCS=%PATH%\Documents"
+Set "DLOAD=%PATH%\Downloads"
+Set "FAVS=%PATH%\Favorites"
+Set "LINKS=%PATH%\Links"
+Set "MUSIC=%PATH%\Music"
+Set "PICS=%PATH%\Pictures"
+Set "GAMES=%PATH%\Saved Games"
+Set "SRCH=%PATH%\Searches"
+Set "VIDS=%PATH%\Videos"
+
+(
+    if not exist "%3DOBJ%" mkdir "%3DOBJ%"
+    if not exist "%CONT%" mkdir "%CONT%"
+    if not exist "%DESK%" mkdir "%DESK%"
+    if not exist "%DOCS%" mkdir "%DOCS%"
+    if not exist "%DLOAD%" mkdir "%DLOAD%"
+    if not exist "%FAVS%" mkdir "%FAVS%"
+    if not exist "%LINKS%" mkdir "%LINKS%"
+    if not exist "%MUSIC%" mkdir "%MUSIC%"
+    if not exist "%PICS%" mkdir "%PICS%"
+    if not exist "%GAMES%" mkdir "%GAMES%"
+    if not exist "%SRCH%" mkdir "%SRCH%"
+    if not exist "%VIDS%" mkdir "%VIDS%"
+)>nul
 
 Set "USF=HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders"
 (
