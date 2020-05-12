@@ -1,8 +1,9 @@
+:: TODO: include >nul in exits
+:: TODO: remove pause from everywhere
 @Echo Off
-
-taskkill /f /im explorer.exe
 Echo "Setting Windows Library folders as requested..."
-timeout /t 2 /nobreak >nul
+taskkill /f /im explorer.exe
+::timeout /t 2 /nobreak >nul
 :: Drive letter
 Set "PATH=Q:\"
 :: Folders from library
@@ -18,22 +19,23 @@ Set "PICS=%PATH%\Pictures"
 Set "GAMES=%PATH%\Saved Games"
 Set "SRCH=%PATH%\Searches"
 Set "VIDS=%PATH%\Videos"
-
-(
-    if not exist "%3DOBJ%" mkdir "%3DOBJ%"
-    if not exist "%CONT%" mkdir "%CONT%"
-    if not exist "%DESK%" mkdir "%DESK%"
-    if not exist "%DOCS%" mkdir "%DOCS%"
-    if not exist "%DLOAD%" mkdir "%DLOAD%"
-    if not exist "%FAVS%" mkdir "%FAVS%"
-    if not exist "%LINKS%" mkdir "%LINKS%"
-    if not exist "%MUSIC%" mkdir "%MUSIC%"
-    if not exist "%PICS%" mkdir "%PICS%"
-    if not exist "%GAMES%" mkdir "%GAMES%"
-    if not exist "%SRCH%" mkdir "%SRCH%"
-    if not exist "%VIDS%" mkdir "%VIDS%"
-)>nul
-
+pause
+::(
+::    if not exist "%3DOBJ%" mkdir "%3DOBJ%"
+::    if not exist "%CONT%" mkdir "%CONT%"
+::    if not exist "%DESK%" mkdir "%DESK%"
+::    if not exist "%DOCS%" mkdir "%DOCS%"
+::    if not exist "%DLOAD%" mkdir "%DLOAD%"
+::    if not exist "%FAVS%" mkdir "%FAVS%"
+::    if not exist "%LINKS%" mkdir "%LINKS%"
+::    if not exist "%MUSIC%" mkdir "%MUSIC%"
+::    if not exist "%PICS%" mkdir "%PICS%"
+::    if not exist "%GAMES%" mkdir "%GAMES%"
+::    if not exist "%SRCH%" mkdir "%SRCH%"
+::    if not exist "%VIDS%" mkdir "%VIDS%"
+::)
+pause
+:: FIXME: output reg is not valid, why?
 Set "USF=HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders"
 (
     Reg Add "%USF%" /V "{31C0DD25-9439-4F12-BF41-7FF4EDA38722}" /T REG_EXPAND_SZ /D "%3DOBJ%" /F
@@ -50,10 +52,29 @@ Set "USF=HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Fold
     Reg Add "%USF%" /V "{4C5C32FF-BB9D-43B0-B5B4-2D72E54EAAA4}" /T REG_EXPAND_SZ /D "%GAMES%" /F
     Reg Add "%USF%" /V "{7D1D3A04-DEBB-4115-95CF-2F29DA2920DA}" /T REG_EXPAND_SZ /D "%SRCH%" /F
     Reg Add "%USF%" /V "My Video" /T REG_EXPAND_SZ /D "%VIDS%" /F
-)>NUL
+)
+pause
+:: FIXME: moving files is not working
+(
+    move /-Y "%USERPROFILE%\Downloads\*.*" "%DLOAD%"
+    move /-Y "%USERPROFILE%\Desktop\*.*" "%DESK%"
+    move /-Y "%USERPROFILE%\Favorites\*.*" "%FAVS%"
+    move /-Y "%USERPROFILE%\Music\*.*" "%MUSIC%"
+    move /-Y "%USERPROFILE%\Pictures\*.*" "%PICS%"
+    move /-Y "%USERPROFILE%\Videos\*.*" "%VIDS%"
+    move /-Y "%USERPROFILE%\Documents\*.*" "%DOCS%"
+    move /-Y "%USERPROFILE%\Links\*.*" "%LINKS%"
+    move /-Y "%USERPROFILE%\Contacts\*.*" "%CONT%"
+    move /-Y "%USERPROFILE%\Saved Games\*.*" "%GAMES%"
+    move /-Y "%USERPROFILE%\3D Objects\*.*" "%3DOBJ%"
+    move /-Y "%USERPROFILE%\Searches\*.*" "%SRCH%"
+    
+)
 
 ::Shutdown /R /D P:2:4
-::pause
-timeout /t 1 /nobreak >nul
 
+::timeout /t 1 /nobreak >nul
+:: FIXME: explorer is not opening
 start explorer.exe
+
+pause
