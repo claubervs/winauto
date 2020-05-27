@@ -1,0 +1,49 @@
+Windows Registry Editor Version 5.00
+
+;for all files
+[HKEY_CLASSES_ROOT\*\shell\My Tools\]
+"MUIVerb"="My Tools"
+"Icon"="ieframe.dll,-36884"
+"Position"="Middle"
+"NoWorkingDirectory"=""
+"SubCommands"=""
+
+;for folders
+[HKEY_CLASSES_ROOT\Directory\shell\My Tools\]
+"MUIVerb"="My Tools"
+"Icon"="ieframe.dll,-36884"
+"Position"="Middle"
+"NoWorkingDirectory"=""
+"SubCommands"=""
+
+;for folder background
+[HKEY_CLASSES_ROOT\Directory\Background\shell\My Tools\]
+"MUIVerb"="My Tools"
+"Icon"="ieframe.dll,-36884"
+"Position"="Middle"
+"NoWorkingDirectory"=""
+"SubCommands"=""
+
+;for drives
+[HKEY_CLASSES_ROOT\Drive\shell\My Tools\]
+"MUIVerb"="My Tools"
+"Icon"="ieframe.dll,-36884"
+"Position"="Middle"
+"NoWorkingDirectory"=""
+"SubCommands"=""
+
+;for desktop
+[HKEY_CLASSES_ROOT\DesktopBackground\shell\My Tools\]
+"MUIVerb"="My Tools"
+"Icon"="ieframe.dll,-36884"
+"Position"="Middle"
+"NoWorkingDirectory"=""
+"SubCommands"=""
+
+;for libraries background
+[HKEY_CLASSES_ROOT\LibraryFolder\Background\shell\My Tools\]
+"MUIVerb"="My Tools"
+"Icon"="ieframe.dll,-36884"
+"Position"="Middle"
+"NoWorkingDirectory"=""
+"SubCommands"=""

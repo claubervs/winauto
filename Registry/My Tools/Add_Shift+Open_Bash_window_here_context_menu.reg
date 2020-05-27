@@ -1,0 +1,72 @@
+Windows Registry Editor Version 5.00
+
+; Created by:Shawn Brink
+; Created on: August 13th 2016
+; Tutorial: http://www.tenforums.com/tutorials/60125-open-bash-window-here-context-menu-add-windows-10-a.html
+
+
+
+
+
+;for folder background
+[HKEY_CLASSES_ROOT\Directory\Background\shell\My Tools\]
+"MUIVerb"="My Tools"
+"Icon"="ieframe.dll,-36884"
+"Position"="Middle"
+"NoWorkingDirectory"=""
+"SubCommands"=""
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\My Tools\shell\Bash]
+@="Open Bash window here"
+"Extended"=""
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\My Tools\shell\Bash\command]
+@="cmd.exe /c pushd \"%V\" && bash.exe"
+
+;for folders
+[HKEY_CLASSES_ROOT\Directory\shell\My Tools\]
+"MUIVerb"="My Tools"
+"Icon"="ieframe.dll,-36884"
+"Position"="Middle"
+"NoWorkingDirectory"=""
+"SubCommands"=""
+
+[HKEY_CLASSES_ROOT\Directory\shell\My Tools\shell\Bash]
+@="Open Bash window here"
+"Extended"=""
+
+[HKEY_CLASSES_ROOT\Directory\shell\My Tools\shell\Bash\command]
+@="cmd.exe /c pushd \"%V\" && bash.exe"
+
+
+
+;for drives
+[HKEY_CLASSES_ROOT\Drive\shell\My Tools\]
+"MUIVerb"="My Tools"
+"Icon"="ieframe.dll,-36884"
+"Position"="Middle"
+"NoWorkingDirectory"=""
+"SubCommands"=""
+
+[HKEY_CLASSES_ROOT\Drive\shell\My Tools\shell\Bash]
+@="Open Bash window here"
+"Extended"=""
+
+[HKEY_CLASSES_ROOT\Drive\shell\My Tools\shell\Bash\command]
+@="cmd.exe /c pushd \"%V\" && bash.exe"
+
+
+;for libraries background
+[HKEY_CLASSES_ROOT\LibraryFolder\Background\shell\My Tools\]
+"MUIVerb"="My Tools"
+"Icon"="ieframe.dll,-36884"
+"Position"="Middle"
+"NoWorkingDirectory"=""
+"SubCommands"=""
+
+[HKEY_CLASSES_ROOT\LibraryFolder\Background\shell\My Tools\shell\Bash]
+@="Open Bash window here"
+"Extended"=""
+
+[HKEY_CLASSES_ROOT\LibraryFolder\Background\shell\My Tools\shell\Bash\command]
+@="cmd.exe /c pushd \"%V\" && bash.exe"
