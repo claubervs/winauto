@@ -7,72 +7,72 @@ Windows Registry Editor Version 5.00
 
 
 
-[HKEY_CLASSES_ROOT\Directory\Background\shell\My Tools\]
+[HKEY_CLASSES_ROOT\Directory\Background\shell\MyTools\]
 "MUIVerb"="My Tools"
 "Icon"="ieframe.dll,-36884"
 "Position"="Middle"
 "NoWorkingDirectory"=""
 "SubCommands"=""
 
-[HKEY_CLASSES_ROOT\Directory\Background\shell\My Tools\shell\PowerShellAsAdmin]
+[HKEY_CLASSES_ROOT\Directory\Background\shell\MyTools\shell\PowerShellAsAdmin]
 @="Open PowerShell window here as administrator"
 "Extended"=""
 "HasLUAShield"=""
 "Icon"="powershell.exe"
 
-[HKEY_CLASSES_ROOT\Directory\Background\shell\My Tools\shell\PowerShellAsAdmin\command]
+[HKEY_CLASSES_ROOT\Directory\Background\shell\MyTools\shell\PowerShellAsAdmin\command]
 @="PowerShell -windowstyle hidden -Command \"Start-Process cmd -ArgumentList '/s,/k,pushd,%V && start PowerShell && exit' -Verb RunAs\""
 
 
-[HKEY_CLASSES_ROOT\Directory\shell\My Tools\]
+[HKEY_CLASSES_ROOT\Directory\shell\MyTools\]
 "MUIVerb"="My Tools"
 "Icon"="ieframe.dll,-36884"
 "Position"="Middle"
 "NoWorkingDirectory"=""
 "SubCommands"=""
 
-[HKEY_CLASSES_ROOT\Directory\shell\My Tools\shell\PowerShellAsAdmin]
+[HKEY_CLASSES_ROOT\Directory\shell\MyTools\shell\PowerShellAsAdmin]
 @="Open PowerShell window here as administrator"
 "Extended"=""
 "HasLUAShield"=""
 "Icon"="powershell.exe"
 
-[HKEY_CLASSES_ROOT\Directory\shell\My Tools\shell\PowerShellAsAdmin\command]
+[HKEY_CLASSES_ROOT\Directory\shell\MyTools\shell\PowerShellAsAdmin\command]
 @="PowerShell -windowstyle hidden -Command \"Start-Process cmd -ArgumentList '/s,/k,pushd,%V && start PowerShell && exit' -Verb RunAs\""
 
 
 
-[HKEY_CLASSES_ROOT\Drive\shell\My Tools\]
+[HKEY_CLASSES_ROOT\Drive\shell\MyTools\]
 "MUIVerb"="My Tools"
 "Icon"="ieframe.dll,-36884"
 "Position"="Middle"
 "NoWorkingDirectory"=""
 "SubCommands"=""
 
-[HKEY_CLASSES_ROOT\Drive\shell\My Tools\shell\PowerShellAsAdmin]
+[HKEY_CLASSES_ROOT\Drive\shell\MyTools\shell\PowerShellAsAdmin]
 @="Open PowerShell window here as administrator"
 "Extended"=""
 "HasLUAShield"=""
 "Icon"="powershell.exe"
 
-[HKEY_CLASSES_ROOT\Drive\shell\My Tools\shell\PowerShellAsAdmin\command]
+[HKEY_CLASSES_ROOT\Drive\shell\MyTools\shell\PowerShellAsAdmin\command]
 @="PowerShell -windowstyle hidden -Command \"Start-Process cmd -ArgumentList '/s,/k,pushd,%V && start PowerShell && exit' -Verb RunAs\""
 
 
-[HKEY_CLASSES_ROOT\LibraryFolder\Background\shell\My Tools\]
+[HKEY_CLASSES_ROOT\LibraryFolder\Background\shell\MyTools\]
 "MUIVerb"="My Tools"
 "Icon"="ieframe.dll,-36884"
 "Position"="Middle"
 "NoWorkingDirectory"=""
 "SubCommands"=""
 
-[HKEY_CLASSES_ROOT\LibraryFolder\Background\shell\My Tools\shell\PowerShellAsAdmin]
+[HKEY_CLASSES_ROOT\LibraryFolder\Background\shell\MyTools\shell\PowerShellAsAdmin]
 @="Open PowerShell window here as administrator"
 "Extended"=""
 "HasLUAShield"=""
 "Icon"="powershell.exe"
 
-[HKEY_CLASSES_ROOT\LibraryFolder\Background\shell\My Tools\shell\PowerShellAsAdmin\command]
+[HKEY_CLASSES_ROOT\LibraryFolder\Background\shell\MyTools\shell\PowerShellAsAdmin\command]
 @="PowerShell -windowstyle hidden -Command \"Start-Process cmd -ArgumentList '/s,/k,pushd,%V && start PowerShell && exit' -Verb RunAs\""
 
 

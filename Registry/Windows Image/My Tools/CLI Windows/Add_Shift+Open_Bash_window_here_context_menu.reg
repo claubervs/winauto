@@ -9,64 +9,64 @@ Windows Registry Editor Version 5.00
 
 
 ;for folder background
-[HKEY_CLASSES_ROOT\Directory\Background\shell\My Tools\]
+[HKEY_CLASSES_ROOT\Directory\Background\shell\MyTools\]
 "MUIVerb"="My Tools"
 "Icon"="ieframe.dll,-36884"
 "Position"="Middle"
 "NoWorkingDirectory"=""
 "SubCommands"=""
 
-[HKEY_CLASSES_ROOT\Directory\Background\shell\My Tools\shell\Bash]
+[HKEY_CLASSES_ROOT\Directory\Background\shell\MyTools\shell\Bash]
 @="Open Bash window here"
 "Extended"=""
 
-[HKEY_CLASSES_ROOT\Directory\Background\shell\My Tools\shell\Bash\command]
+[HKEY_CLASSES_ROOT\Directory\Background\shell\MyTools\shell\Bash\command]
 @="cmd.exe /c pushd \"%V\" && bash.exe"
 
 ;for folders
-[HKEY_CLASSES_ROOT\Directory\shell\My Tools\]
+[HKEY_CLASSES_ROOT\Directory\shell\MyTools\]
 "MUIVerb"="My Tools"
 "Icon"="ieframe.dll,-36884"
 "Position"="Middle"
 "NoWorkingDirectory"=""
 "SubCommands"=""
 
-[HKEY_CLASSES_ROOT\Directory\shell\My Tools\shell\Bash]
+[HKEY_CLASSES_ROOT\Directory\shell\MyTools\shell\Bash]
 @="Open Bash window here"
 "Extended"=""
 
-[HKEY_CLASSES_ROOT\Directory\shell\My Tools\shell\Bash\command]
+[HKEY_CLASSES_ROOT\Directory\shell\MyTools\shell\Bash\command]
 @="cmd.exe /c pushd \"%V\" && bash.exe"
 
 
 
 ;for drives
-[HKEY_CLASSES_ROOT\Drive\shell\My Tools\]
+[HKEY_CLASSES_ROOT\Drive\shell\MyTools\]
 "MUIVerb"="My Tools"
 "Icon"="ieframe.dll,-36884"
 "Position"="Middle"
 "NoWorkingDirectory"=""
 "SubCommands"=""
 
-[HKEY_CLASSES_ROOT\Drive\shell\My Tools\shell\Bash]
+[HKEY_CLASSES_ROOT\Drive\shell\MyTools\shell\Bash]
 @="Open Bash window here"
 "Extended"=""
 
-[HKEY_CLASSES_ROOT\Drive\shell\My Tools\shell\Bash\command]
+[HKEY_CLASSES_ROOT\Drive\shell\MyTools\shell\Bash\command]
 @="cmd.exe /c pushd \"%V\" && bash.exe"
 
 
 ;for libraries background
-[HKEY_CLASSES_ROOT\LibraryFolder\Background\shell\My Tools\]
+[HKEY_CLASSES_ROOT\LibraryFolder\Background\shell\MyTools\]
 "MUIVerb"="My Tools"
 "Icon"="ieframe.dll,-36884"
 "Position"="Middle"
 "NoWorkingDirectory"=""
 "SubCommands"=""
 
-[HKEY_CLASSES_ROOT\LibraryFolder\Background\shell\My Tools\shell\Bash]
+[HKEY_CLASSES_ROOT\LibraryFolder\Background\shell\MyTools\shell\Bash]
 @="Open Bash window here"
 "Extended"=""
 
-[HKEY_CLASSES_ROOT\LibraryFolder\Background\shell\My Tools\shell\Bash\command]
+[HKEY_CLASSES_ROOT\LibraryFolder\Background\shell\MyTools\shell\Bash\command]
 @="cmd.exe /c pushd \"%V\" && bash.exe"

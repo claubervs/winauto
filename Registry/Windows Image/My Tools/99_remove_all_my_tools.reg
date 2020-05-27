@@ -1,0 +1,15 @@
+Windows Registry Editor Version 5.00
+
+;for all files
+[-HKEY_CLASSES_ROOT\*\shell\MyTools\]
+;for folders
+[-HKEY_CLASSES_ROOT\Directory\shell\MyTools\]
+[-HKEY_CLASSES_ROOT\Folder\shell\MyTools\]
+;for folder background
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\MyTools\]
+;for drives
+[-HKEY_CLASSES_ROOT\Drive\shell\MyTools\]
+;for desktop
+[-HKEY_CLASSES_ROOT\DesktopBackground\shell\MyTools\]
+;for libraries background
+[-HKEY_CLASSES_ROOT\LibraryFolder\Background\shell\MyTools\]
