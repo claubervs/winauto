@@ -9,6 +9,6 @@ REG ADD "HKCU\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\Shell\B
 
 
 :: To kill and restart explorer
-taskkill /f /im explorer.exe
-start explorer.exe
+:: taskkill /f /im explorer.exe
+:: start explorer.exe
 
