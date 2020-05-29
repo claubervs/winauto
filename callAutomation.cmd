@@ -2,9 +2,11 @@ SETLOCAL
 @echo off
 
 :prepare
+:: Set variable to get files from the OEM default location
 set filesPATH="%WINDIR%\Setup\Files"
 :: Create new folder in homedrive for scripts and files
 if not exist "C:\automation\" mkdir "C:\automation"
+:: Set the created folder to automationPATH
 set automationPATH="C:\automation"
 :: copy wget and dependencies to automation folder
 copy "%filesPATH%\wget\*.*" "%automationPATH%\"
@@ -23,8 +25,9 @@ if %ERRORLEVEL% == 2 GOTO download
 
 :download
 :: Enter download URL or continues with default if left empty
-set /p dURL="Enter download URL or leave blank for default (file must be named automation.cmd):"
-if [%dURL%] == [] GOTO download_default ELSE GOTO download_custom
+set /p dURL="Enter the download URL or leave blank for default (file must be named automation.cmd):"
+if [%dURL%] == [] GOTO download_default
+::if [%dURL%] == [] GOTO download_default ELSE GOTO download_custom
 
 :download_custom
 :: downloads the file selected by the user
@@ -35,19 +38,18 @@ GOTO after_download
 :download_default
 :: downloads the default automation.cmd and goes on with the script
 wget.exe --no-check-certificate --content-disposition "https://raw.githubusercontent.com/claubervs/winauto/master/automation.cmd"
-GOTO after_download
+::GOTO after_download
 
 :after_download
 :: verifies if the file is downloaded otherwise goes through the whole process again
 if not exist %automationPATH%\automation.cmd GOTO begin
 :: set exec as the file to execute
 set exec="%automationPATH%\automation.cmd"
-GOTO main
+::GOTO main
 
 :main
 :: runs the automation downloaded and finishes the script
 call exec
-GOTO finish
 ::clean
 ::rd /s /q %automationPATH%
 ::GOTO finish
