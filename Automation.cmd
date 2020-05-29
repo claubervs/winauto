@@ -1,7 +1,10 @@
 @echo off
 echo.
+set workDIR="%HOMEDRIVE%\automation"
 echo. "Cleaning Windows Apps..."
-start /b /wait powershell.exe -file C:\clean_windows_apps.ps1
+cd workDIR
+wget.exe --no-check-certificate --content-disposition "https://raw.githubusercontent.com/claubervs/winauto/master/Powershell%20Scripts/clean_windows_apps.ps1"
+start /b /wait powershell.exe -file %workDIR%\clean_windows_apps.ps1
 ::start /b /wait cmd /C "C:\clean_windows_apps.cmd"
 echo. "Automating install..."
 start /b /wait powershell.exe -file C:\runAutomation.ps1
