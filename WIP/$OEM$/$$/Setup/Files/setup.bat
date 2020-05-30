@@ -84,7 +84,7 @@ cmd /c "%setupLocation%\Auto_arrange_icons-ON_and_Align_icons_to_grid-ON.bat"
 cmd /c "%setupLocation%\Disable_wide_context_menus_in_Windows10.bat"
 echo.
 ECHO **************************************
-ECHO Final registry files installation...
+ECHO Final registry files installation... Done.
 ECHO **************************************
 echo.
 timeout /t 5 /nobreak >nul
@@ -92,6 +92,7 @@ echo.
 cmd /c "%setupLocation%\wget\setup.bat"
 echo.
 echo Continuing automation...
+echo.
 timeout /t 5 /nobreak >nul
-cmd /c "%setupLocation%\testcall.bat"
+cmd /c "%setupLocation%\callAutomation.bat"
 exit

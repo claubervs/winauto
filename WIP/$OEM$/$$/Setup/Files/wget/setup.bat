@@ -57,4 +57,4 @@ ECHO Installing wget... Done.
 ECHO **************************************
 echo.
 timeout /t 5 /nobreak >nul
-exit
+::exit

@@ -50,24 +50,26 @@ echo.
 timeout /t 10 /nobreak >nul
 :prepare
 :: Set variable to get files from the OEM default location
-set filesPATH="%WINDIR%\Setup\Files"
+::set filesPATH="%WINDIR%\Setup\Files"
+set setupLocation="%HOMEDRIVE%\Tools"
 :: Create new folder in homedrive for scripts and files
-if not exist "C:\automation\" mkdir "C:\automation"
+::if not exist %setupLocation% mkdir %setupLocation%
 :: Set the created folder to automationPATH
-set automationPATH="C:\automation"
+::set automationPATH="C:\automation"
 :: copy wget and dependencies to automation folder
-copy "%filesPATH%\wget\*.*" "%automationPATH%\"
+::copy "%filesPATH%\wget\*.*" "%automationPATH%\"
 :: copy wget and dependencies to system32 folder
-copy "%filesPATH%\wget\*.*" "%WINDIR%\System32\"
+::copy "%filesPATH%\wget\*.*" "%WINDIR%\System32\"
 :: deletes wget files and dependencies from original folder
 ::rd /s /q "%filesPATH%\wget"
 
 :begin
 :: goes inside automation path for script execution
-cd %automationPATH%\
+cd %setupLocation%\
 :: asks for user input if he/she wants to enter a default download URL or go on with default file
-choice /c:dc /n /t 10 /d d /m "[C]ustom or [D]efault configuration file download? Wait 10 seconds for default option."
-if %ERRORLEVEL% == 1 GOTO download_default
+choice /c:dcq /n /t 10 /d d /m "[C]ustom or [D]efault configuration file download? Wait 10 seconds for default option or [Q]uit now."
+if %ERRORLEVEL%==1 GOTO download_default
+if %ERRORLEVEL%==3 GOTO finish
 ::if %ERRORLEVEL% == 2 GOTO download
 
 :download
