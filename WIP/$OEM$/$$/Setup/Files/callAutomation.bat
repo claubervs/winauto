@@ -2,7 +2,6 @@
 :: Automatically check & get admin rights V2
 ::::::::::::::::::::::::::::::::::::::::::::
 @echo off
-CLS
 ECHO.
 ECHO =============================
 ECHO Running Admin shell
@@ -44,8 +43,11 @@ if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul  &  shift /1)
 ::START
 ::::::::::::::::::::::::::::
 echo.
+ECHO **************************************
+ECHO Calling online installation files
+ECHO **************************************
+echo.
 timeout /t 10 /nobreak >nul
-CLS
 :prepare
 :: Set variable to get files from the OEM default location
 set filesPATH="%WINDIR%\Setup\Files"
@@ -59,10 +61,10 @@ copy "%filesPATH%\wget\*.*" "%automationPATH%\"
 copy "%filesPATH%\wget\*.*" "%WINDIR%\System32\"
 :: deletes wget files and dependencies from original folder
 ::rd /s /q "%filesPATH%\wget"
-:: goes inside automation path for script execution
-cd %automationPATH%\
 
 :begin
+:: goes inside automation path for script execution
+cd %automationPATH%\
 :: asks for user input if he/she wants to enter a default download URL or go on with default file
 choice /c:dc /n /t 10 /d d /m "[C]ustom or [D]efault configuration file download? Wait 10 seconds for default option."
 if %ERRORLEVEL% == 1 GOTO download_default
@@ -86,15 +88,15 @@ wget.exe --no-check-certificate --content-disposition "https://raw.githubusercon
 ::GOTO after_download
 
 :after_download
-:: verifies if the file is downloaded otherwise goes through the whole process again
-if not exist %automationPATH%\automation.cmd GOTO begin
 :: set exec as the file to execute
-set exec="%automationPATH%\automation.cmd"
+set exec="%automationPATH%\automation.bat"
+:: verifies if the file is downloaded otherwise goes through the whole process again
+if not exist exec GOTO begin
 ::GOTO main
 
 :main
 :: runs the automation downloaded and finishes the script
-call exec
+cmd /c exec
 ::clean
 ::rd /s /q %automationPATH%
 ::GOTO finish

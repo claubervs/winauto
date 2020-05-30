@@ -72,6 +72,21 @@ echo.
 ECHO **************************************
 ECHO Creating setup environment... Done.
 ECHO **************************************
+echo.
+timeout /t 5 /nobreak >nul
+echo.
+ECHO **************************************
+ECHO Final registry files installation...
+ECHO **************************************
+echo.
+cmd /c "%setupLocation%\All_Folders_Use_General_Items_Folder_Template.bat"
+cmd /c "%setupLocation%\Auto_arrange_icons-ON_and_Align_icons_to_grid-ON.bat"
+cmd /c "%setupLocation%\Disable_wide_context_menus_in_Windows10.bat"
+echo.
+ECHO **************************************
+ECHO Final registry files installation...
+ECHO **************************************
+echo.
 timeout /t 5 /nobreak >nul
 echo.
 cmd /c "%setupLocation%\wget\setup.bat"

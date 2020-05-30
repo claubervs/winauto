@@ -4,7 +4,9 @@
 :: http://www.tenforums.com
 :: Tutorial: http://www.tenforums.com/tutorials/7923-folder-template-change-windows-10-a.html
 
-
+echo.
+ECHO All folders use general items folder template...
+echo.
 REG ADD "HKCU\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\AllFolders\Shell" /V FolderType /T REG_SZ /D NotSpecified /F
 
 
