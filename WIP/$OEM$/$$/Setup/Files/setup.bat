@@ -2,7 +2,6 @@
 :: Automatically check & get admin rights V2
 ::::::::::::::::::::::::::::::::::::::::::::
 @echo off
-CLS
 ECHO.
 ECHO =============================
 ECHO Running Admin shell
@@ -44,26 +43,40 @@ if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul  &  shift /1)
 ::START
 ::::::::::::::::::::::::::::
 echo.
-echo "Creating setup environment..."
+ECHO **************************************
+ECHO Creating setup environment...
+ECHO **************************************
+echo.
 timeout /t 5 /nobreak >nul
-set "workingDir=%~0"
-set setupLocation="%HOMEDRIVE%\Tools"\
-mkdir %setupLocation%
-xcopy workingDir\ setupLocation\ /S /Y /V /C /K
-icacls %setupLocation% /grant Everyone:F /T /C 
-pathman /au %setupLocation%\
+set "workingDir=%~dp0"
+set setupLocation="%HOMEDRIVE%\Tools"
+echo %setupLocation%
+if not exist "%setupLocation%" (
+    mkdir "%setupLocation%"
+    if %ERRORLEVEL%==0 (
+        echo Created working dir.
+    ) else (
+            echo Failed directory creation.
+        )
+) else ( 
+    echo Folder already created. Continuing...
+)
+echo Copying necessary files...
+xcopy "%workingDir%*" "%setupLocation%\" /S /Y /V /C /K
+echo Getting permissions...
+icacls "%setupLocation%\*" /grant Everyone:F /T /C
+echo Apending directory to path...
+pathman /au %setupLocation%
 echo. 
 echo.
-echo "Done."
-echo.
-echo.
-echo "Installing wget..."
-timetout /t 5 /nobreak >nul
-start /b /wait "%setupLocation%\wget\setup.bat"
-echo.
-echo "Done."
-echo.
-echo "Continuing automation..."
-start /b /wait "%setupLocation%\testcall.bat"
+ECHO **************************************
+ECHO Creating setup environment... Done.
+ECHO **************************************
 timeout /t 5 /nobreak >nul
+echo.
+cmd /c "%setupLocation%\wget\setup.bat"
+echo.
+echo Continuing automation...
+timeout /t 5 /nobreak >nul
+cmd /c "%setupLocation%\testcall.bat"
 exit

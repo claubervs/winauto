@@ -2,7 +2,6 @@
 :: Automatically check & get admin rights V2
 ::::::::::::::::::::::::::::::::::::::::::::
 @echo off
-CLS
 ECHO.
 ECHO =============================
 ECHO Running Admin shell
@@ -44,12 +43,18 @@ if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul  &  shift /1)
 ::START
 ::::::::::::::::::::::::::::
 echo.
-echo "Installing wget..."
-timeout /t 5 /nobreak >nul
-set "myBatchPath=%~0"
-start /b /wait %~dp0\setup.exe /silent
-pathman /au "C:\Program Files (x86)\GnuWin32\bin\"
+ECHO **************************************
+ECHO Installing wget...
+ECHO **************************************
 echo.
-echo "Done."
+timeout /t 5 /nobreak >nul
+set myBatchPath=%~dp0
+start /b /wait %myBatchPath%setup.exe /silent
+pathman /au "C:\Program Files (x86)\GnuWin32\bin\
+echo.
+ECHO **************************************
+ECHO Installing wget... Done.
+ECHO **************************************
+echo.
 timeout /t 5 /nobreak >nul
 exit

@@ -1,5 +1,4 @@
-cls
 @echo off
 echo "Testing..."
-timeout /t 10 /nobreak >nul
+timeout /t 5 /nobreak >nul
 exit
