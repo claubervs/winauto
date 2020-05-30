@@ -47,7 +47,7 @@ ECHO **************************************
 ECHO Creating setup environment...
 ECHO **************************************
 echo.
-timeout /t 5 /nobreak >nul
+::timeout /t 5 /nobreak >nul
 set "workingDir=%~dp0"
 set setupLocation="%HOMEDRIVE%\Tools"
 echo %setupLocation%
@@ -73,7 +73,7 @@ ECHO **************************************
 ECHO Creating setup environment... Done.
 ECHO **************************************
 echo.
-timeout /t 5 /nobreak >nul
+::timeout /t 5 /nobreak >nul
 echo.
 ECHO **************************************
 ECHO Final registry files installation...
@@ -87,12 +87,12 @@ ECHO **************************************
 ECHO Final registry files installation... Done.
 ECHO **************************************
 echo.
-timeout /t 5 /nobreak >nul
+::timeout /t 5 /nobreak >nul
 echo.
 cmd /c "%setupLocation%\wget\setup.bat"
 echo.
 echo Continuing automation...
 echo.
-timeout /t 5 /nobreak >nul
+::timeout /t 5 /nobreak >nul
 cmd /c "%setupLocation%\callAutomation.bat"
 exit

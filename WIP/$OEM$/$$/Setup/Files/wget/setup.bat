@@ -47,7 +47,7 @@ ECHO **************************************
 ECHO Installing wget...
 ECHO **************************************
 echo.
-timeout /t 5 /nobreak >nul
+::timeout /t 5 /nobreak >nul
 set myBatchPath=%~dp0
 start /b /wait %myBatchPath%setup.exe /silent
 pathman /au "C:\Program Files (x86)\GnuWin32\bin\
@@ -56,5 +56,5 @@ ECHO **************************************
 ECHO Installing wget... Done.
 ECHO **************************************
 echo.
-timeout /t 5 /nobreak >nul
+::timeout /t 5 /nobreak >nul
 ::exit

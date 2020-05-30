@@ -47,11 +47,11 @@ ECHO **************************************
 ECHO Calling online installation files
 ECHO **************************************
 echo.
-timeout /t 10 /nobreak >nul
+::timeout /t 1 /nobreak >nul
 :prepare
 :: Set variable to get files from the OEM default location
 ::set filesPATH="%WINDIR%\Setup\Files"
-set setupLocation="%HOMEDRIVE%\Tools"
+set "setupLocation=%HOMEDRIVE%\Tools"
 :: Create new folder in homedrive for scripts and files
 ::if not exist %setupLocation% mkdir %setupLocation%
 :: Set the created folder to automationPATH
@@ -91,14 +91,15 @@ wget.exe --no-check-certificate --content-disposition "https://raw.githubusercon
 
 :after_download
 :: set exec as the file to execute
-set exec="%automationPATH%\automation.bat"
+set "exec=%setupLocation%\automation.bat"
+echo %exec%
 :: verifies if the file is downloaded otherwise goes through the whole process again
-if not exist exec GOTO begin
+if not exist %exec% GOTO begin
 ::GOTO main
 
 :main
 :: runs the automation downloaded and finishes the script
-cmd /c exec
+cmd /c %exec%
 ::clean
 ::rd /s /q %automationPATH%
 ::GOTO finish

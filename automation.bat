@@ -1,9 +1,9 @@
 @echo off
 echo.
 :: set variable for working folder
-set workDIR="%HOMEDRIVE%\Tools"
+set "workDIR=%HOMEDRIVE%\Tools"
 :: enter the working directory for future commands
-cd workDIR
+cd %workDIR%
 echo.
 ECHO **************************************
 ECHO Cleaning Windows apps...
@@ -17,6 +17,7 @@ echo.
 echo.
 start /b /wait powershell.exe -file %workDIR%\clean_windows_apps.ps1
 echo.
+pause
 echo.
 :: download file from my github and run
 wget.exe --no-check-certificate --content-disposition "https://raw.githubusercontent.com/claubervs/winauto/master/Final/Scripts/runAutomation.ps1"
@@ -27,6 +28,7 @@ timeout /t 5 /nobreak >nul
 start /b /wait powershell.exe -file %workDIR%\runAutomation.ps1
 echo.
 echo.
+pause
 echo.
 echo Finished automation. Cleaning up...
 ::del /f /q %workDIR%\clean_windows_apps.ps1
