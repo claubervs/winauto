@@ -3,13 +3,18 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 # get default execution policy
 $default_policy = Get-ExecutionPolicy -Scope CurrentUser
 # change execution policy for scripts to run
-Set-ExecutionPolicy Bypass -Scope  CurrentUser
+Set-ExecutionPolicy Bypass -Scope CurrentUser
+
+
+$credential= Get-Credential
+
+# Get-Credential CVS20181104\claub
 
 
 . { Invoke-WebRequest -useb https://boxstarter.org/bootstrapper.ps1 } | Invoke-Expression; Get-Boxstarter -Force
 
 Install-BoxstarterPackage `
-    -PackageName https://gist.githubusercontent.com/claubervs/3a092ec4b6a314580473dcf26bf23b46/raw/51f6b20e51a874708bf1491e332706ca9e3b0373/myAutomation.ps1 `
+    -PackageName https://gist.githubusercontent.com/claubervs/ddb55442e1348263d1c6/raw/cv_script.ps1 `
     -DisableReboots
     
 
