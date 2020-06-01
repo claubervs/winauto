@@ -6,17 +6,17 @@ $default_policy = Get-ExecutionPolicy -Scope CurrentUser
 Set-ExecutionPolicy Bypass -Scope CurrentUser
 
 
-$credential= Get-Credential
+$credentials= Get-Credential
 
 # Get-Credential CVS20181104\claub
 
-
+Write-Host Installing Chocolatey and Boxtarter
 . { Invoke-WebRequest -useb https://boxstarter.org/bootstrapper.ps1 } | Invoke-Expression; Get-Boxstarter -Force
 
 Install-BoxstarterPackage `
-    -PackageName https://gist.githubusercontent.com/claubervs/ddb55442e1348263d1c6/raw/cv_script.ps1 `
-    -DisableReboots
-    
+    -PackageName https://gist.githubusercontent.com/claubervs/3a092ec4b6a314580473dcf26bf23b46/raw/config.ps1 -Credential $credentials
 
 # change execution policy back to default
 Set-ExecutionPolicy $default_policy -Scope CurrentUser
+
+#-DisableReboots

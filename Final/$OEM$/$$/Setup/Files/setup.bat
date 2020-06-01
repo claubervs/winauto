@@ -103,35 +103,33 @@ ECHO **************************************
 echo.
 timeout /t 5 /nobreak >nul
 ECHO **************************************
-ECHO Installing wget...
+ECHO Going ONLINE.
 ECHO **************************************
 echo.
+:validate
+echo Please connect your computer to the internet if not already and press enter to continue...
+pause >nul
+ping -n 1 "www.google.com" | findstr /r /c:"[0-9] *ms"
+
+if %errorlevel% == 0 (
+    echo Success.
+    goto go_online
+) else (
+    echo FAILURE.
+    goto :validate
+)
+:go_online
+pause
+echo.
 ECHO **************************************
-ECHO Installing wget... Done.
+ECHO Going ONLINE... Done
 ECHO **************************************
 timeout /t 5 /nobreak >nul
 echo.
 ECHO **************************************
-ECHO Calling online installation files
+ECHO Begin Online Setup
 ECHO **************************************
 echo.
-:prepare
-:::: Set variable to get files from the OEM default location
-::::set filesPATH="%WINDIR%\Setup\Files"
-
-::set "setupLocation=%HOMEDRIVE%\Tools"
-
-:::: Create new folder in homedrive for scripts and files
-::::if not exist %setupLocation% mkdir %setupLocation%
-:::: Set the created folder to automationPATH
-::::set automationPATH="C:\automation"
-:::: copy wget and dependencies to automation folder
-::::copy "%filesPATH%\wget\*.*" "%automationPATH%\"
-:::: copy wget and dependencies to system32 folder
-::::copy "%filesPATH%\wget\*.*" "%WINDIR%\System32\"
-:::: deletes wget files and dependencies from original folder
-::::rd /s /q "%filesPATH%\wget"
-
 :begin
 :: goes inside automation path for script execution
 cd %setupLocation%\
