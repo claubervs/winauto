@@ -47,11 +47,10 @@ ECHO **************************************
 ECHO Creating setup environment...
 ECHO **************************************
 echo.
-timeout /t 5 /nobreak >nul
+::timeout /t 5 /nobreak >nul
 set "workingDir=%~dp0"
-set setupLocation="%HOMEDRIVE%\Tools"
-echo %setupLocation%
-pause
+set "setupLocation=%HOMEDRIVE%\Tools"
+set "binFolder=%setupLocation%\bin"
 if not exist "%setupLocation%" (
     mkdir "%setupLocation%"
     if %ERRORLEVEL%==0 (
@@ -66,14 +65,12 @@ echo Copying necessary files...
 xcopy "%workingDir%*" "%setupLocation%\" /S /Y /V /C /K
 echo Getting permissions...
 icacls "%setupLocation%\*" /grant Everyone:F /T /C
-echo Apending directory to path...
-pathman /au %setupLocation%\bin
 echo.
 ECHO **************************************
 ECHO Creating setup environment... Done.
 ECHO **************************************
 echo.
-timeout /t 5 /nobreak >nul
+::timeout /t 5 /nobreak >nul
 echo.
 ECHO **************************************
 ECHO Some basic registry files...
@@ -86,7 +83,6 @@ ECHO Auto arrange icons ON and Align icons to grid ON...
 REG ADD "HKCU\SOFTWARE\Microsoft\Windows\Shell\Bags\1\Desktop" /V FFLAGS /T REG_DWORD /D 1075839525 /F
 echo.
 ECHO Disable wide context mnenus in Windows 10...
-::start /b /wait powershell -command "Start-Process cmd -ArgumentList '/s,/c,REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\FlightedFeatures" /V ImmersiveContextMenu /T REG_DWORD /D 0 /F' -Verb runAs"
 REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\FlightedFeatures" /V ImmersiveContextMenu /T REG_DWORD /D 0 /F
 echo.
 echo Enabling powershell script execution...
@@ -95,13 +91,13 @@ reg ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell" /V E
 echo.
 echo Restarting explorer... 
 taskkill /f /im explorer.exe
-start explorer.exe
+start explorer && echo SUCCESS: Explorer restarted
 echo.
 ECHO **************************************
 ECHO Some basic registry files... Done.
 ECHO **************************************
 echo.
-timeout /t 5 /nobreak >nul
+::timeout /t 5 /nobreak >nul
 ECHO **************************************
 ECHO Going ONLINE.
 ECHO **************************************
@@ -119,12 +115,11 @@ if %errorlevel% == 0 (
     goto :validate
 )
 :go_online
-pause
 echo.
 ECHO **************************************
 ECHO Going ONLINE... Done
 ECHO **************************************
-timeout /t 5 /nobreak >nul
+::timeout /t 5 /nobreak >nul
 echo.
 ECHO **************************************
 ECHO Begin Online Setup
@@ -132,7 +127,7 @@ ECHO **************************************
 echo.
 :begin
 :: goes inside automation path for script execution
-cd %setupLocation%\
+cd /d %setupLocation%\
 :: asks for user input if he/she wants to enter a default download URL or go on with default file
 echo The next steps will download the ps1 file to call the installation of Chocolatey and Boxstarter to automate configuring the machine.
 echo If you want to change the file that gets downloaded do so by entering the complete download URL.
@@ -154,25 +149,23 @@ if [%dURL%] == [] GOTO download_default
 :: downloads the file selected by the user
 :: must be named automation.cmd otherwise script will not run after download
 echo.
-wget.exe --no-check-certificate --content-disposition "%dURL%"
+%binFolder%\wget.exe --no-check-certificate --content-disposition "%dURL%"
 GOTO after_download
 
 :download_default
 :: downloads the default automation.cmd and goes on with the script
 echo.
-wget.exe --no-check-certificate --content-disposition "https://raw.githubusercontent.com/claubervs/winauto/master/Final/Scripts/setup.ps1"
+%binFolder%\wget.exe --no-check-certificate --content-disposition "https://raw.githubusercontent.com/claubervs/winauto/master/Final/Scripts/setup.ps1"
 ::GOTO after_download
 
 :after_download
 :: set exec as the file to execute
 set "exec=%setupLocation%\setup.ps1"
-echo %exec%
-pause
 :: verifies if the file is downloaded otherwise goes through the whole process again
 if not exist %exec% GOTO begin
 
 :: runs the automation downloaded and finishes the script
-start /b /wait powershell -file %exec% -Verb runas
+start powershell -file %exec% -Verb runas
 
 :finish
 exit
