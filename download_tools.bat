@@ -1,1 +1,0 @@
-bitsadmin /transfer setupfiles /download /priority normal https://raw.githubusercontent.com/claubervs/winauto/master/winlib_config.bat C:\Tools
