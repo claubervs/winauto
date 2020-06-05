@@ -1,0 +1,7 @@
+
+https://draculatheme.com/telegram
+
+Activating theme
+In Telegram Desktop, go to setting and under the Chat background section click on Choose from file.
+Select the colors.tdesktop-theme file you just downloaded.
+Click Keep Changes to apply the theme.

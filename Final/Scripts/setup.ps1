@@ -1,20 +1,22 @@
-if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`" `"$args`"" -Verb RunAs -Wait; exit }
+if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`" `"$args`"" -Verb RunAs; exit }
 
+# Logging information
+Start-Transcript -Path "$PSScriptRoot\setup_log.txt" -UseMinimalHeader
 # get default execution policy
-$default_policy = Get-ExecutionPolicy -Scope CurrentUser
+$default_policy=Get-ExecutionPolicy -Scope CurrentUser
 # change execution policy for scripts to run
 Set-ExecutionPolicy Bypass -Scope CurrentUser
 
-
+# get credential information for possible reboots
 $credentials=Get-Credential
-
 # Get-Credential CVS20181104\claub
 
-Write-Host ""
-Write-Host "========================================="
-Write-Host "   Installing Chocolatey and Boxtarter"
-Write-Host "========================================="
-Write-Host ""
+Write-Host 
+Write-Host =========================================
+Write-Host    Installing Chocolatey and Boxtarter
+Write-Host =========================================
+Write-Host
+
 . { Invoke-WebRequest -useb https://boxstarter.org/bootstrapper.ps1 } | Invoke-Expression; Get-Boxstarter -Force
 
 choco feature enable --name=allowGlobalConfirmation -y
@@ -24,5 +26,5 @@ Install-BoxstarterPackage `
 
 # change execution policy back to default
 Set-ExecutionPolicy $default_policy -Scope CurrentUser
-
+Stop-Transcript
 #-DisableReboots
