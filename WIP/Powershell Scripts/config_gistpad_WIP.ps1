@@ -195,7 +195,7 @@ Write-Host "========================================="
 Write-Host ""
 
 if ($Global:SoftwareInstall -eq $true) {
-    #region Necessary software pack
+    #region necessary software pack
     choco upgrade git -y
     choco upgrade gitahead -y
     choco upgrade brave -y
@@ -218,9 +218,9 @@ if ($Global:SoftwareInstall -eq $true) {
     choco upgrade adoptopenjdkjre -y
     choco upgrade sharex -y
     choco upgrade eartrumpet -y
-        #endregion
+    #endregion
 
-    #region Other software
+    #region other software
     choco upgrade wox -y
     choco upgrade powertoys -y
     choco upgrade teamviewer -y
