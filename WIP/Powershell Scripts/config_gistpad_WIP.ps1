@@ -25,7 +25,6 @@ $Global:WindowsUpdate = $false
 $Global:WindowsFeatures = $false
 $Global:WindowsRegistry = $false
 
-
 $Global:ConfigureDriveLetters = $false
 
 $Global:SoftwareInstall = $false
@@ -33,6 +32,7 @@ $Global:SoftwareInstall = $false
 $Global:InstallScript = $false
 
 $Global:IntallDeviceDrivers = $false
+$Global:customConfigs = $false
 #endregion
 
 #region DISCLAIMER
@@ -111,7 +111,28 @@ else {
     Write-Warning "Skipping crapware cleaning..."
 }
 
-
+#region WIP
+# $Global:WindowsCrapwareClean = $true
+# if ($Global:WindowsCrapwareClean -eq $true) {
+#     $softwareToClean = Get-AppxPackage -AllUsers | Out-GridView -PassThru
+#     # $softwareToClean = Get-AppxPackage -AllUsers | Out-GridView -PassThru | ForEach-Object $_ | Remove-AppxPackage 
+#     foreach ($item in $softwareToClean.Name) {
+#         Write-Verbose "Removing $item from your computer."
+#         Write-Host "$item"
+#         Get-AppxPackage -AllUsers $item | Out-Host
+#         Get-AppxPackage -AllUsers $item | Remove-AppxPackage -AllUsers
+#     }
+#     foreach ($item in $softwareToClean.Name) {
+#         Write-Verbose "Removing $item from all future users."
+#         Write-Host "$item"
+#         Get-AppxProvisionedPackage -Online | Where-Object {$_.PackageName -like "$item"} | Out-Host
+#         Get-AppxProvisionedPackage -Online | Where-Object {$_.PackageName -like "$item"} |  Remove-AppxProvisionedPackage -Online
+#     }
+# }
+# else {
+#     Write-Warning -Message "Skipping crapware cleaning..."
+# }
+#endregion
 
 #endregion
 
@@ -143,6 +164,7 @@ Write-Host "========================================="
 Write-Host "            Updating Windows             "
 Write-Host "========================================="
 Write-Host ""
+$Global:WindowsUpdate = $true
 if ($Global:WindowsUpdate -eq $true){
     Enable-MicrosoftUpdate
     Install-WindowsUpdate -getUpdatesFromMS -acceptEula -SuppressReboots
@@ -151,6 +173,7 @@ if ($Global:WindowsUpdate -eq $true){
     else{
         Write-Warning "Skipping Windows updates..."
 }
+Read-Host -Prompt "Press Enter to continue..."
 #endregion
 
 #region DRIVE LETTERS
@@ -230,14 +253,18 @@ if ($Global:SoftwareInstall -eq $true) {
     choco upgrade qbittorrent -y
     choco upgrade steam -y
     choco upgrade epicgameslauncher -y
-    choco upgrade origin -y
+    choco upgrade origin --ignorechecksum -y
     choco upgrade battle.net -y
+    choco upgrade goggalaxy -y
+    choco upgrade uplay -y
+    choco upgrade rambox -y
+    choco upgrade google-backup-and-sync -y
     #endregion
 
     #region developer alternative software
     choco upgrade hyper -y
-    choco upgrade jetbrainsmono -y
     choco upgrade firacode -y
+    choco upgrade 
     #endregion
     
     Write-Host "Done." -ForegroundColor White -BackgroundColor DarkGreen
@@ -246,6 +273,27 @@ else {
     Write-Warning "Skipping software installation..."
 }
 #endregion
+
+#region Custom Configurations
+Write-Host ""
+Write-Host "========================================="
+Write-Host "         Custom Configurations           "
+Write-Host "========================================="
+Write-Host ""
+
+
+if ($Global:customConfigs -eq $true){
+    choco upgrade firacode -y
+    Install-PackageProvider -Name NuGet -Force
+    Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+    Install-Module posh-git -Scope CurrentUser
+    Install-Module oh-my-posh -Scope CurrentUser
+    Install-Module -Name PSReadLine -Scope CurrentUser -Force -SkipPublisherCheck
+        # The lines below should be inserted into a file when running the command notepad $PROFILE
+        # Import-Module posh-git
+        # Import-Module oh-my-posh
+        # Set-Theme Agnoster
+}
 
 # Return command to user
 
