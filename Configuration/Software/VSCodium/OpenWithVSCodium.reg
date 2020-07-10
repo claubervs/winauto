@@ -1,0 +1,28 @@
+Windows Registry Editor Version 5.00
+
+; Open files
+
+[HKEY_CLASSES_ROOT\*\shell\Open with VSCodium]
+@="Edit with V&SCodium"
+"Icon"="C:\\Portable\\SyMenu\\ProgramFiles\\SPSSuite\\SyMenuSuite\\VSCodium_portable_(x64)_sps\\vscodium-portable.exe,0"
+
+[HKEY_CLASSES_ROOT\*\shell\Open with VSCodium\command]
+@="\"C:\\Portable\\SyMenu\\ProgramFiles\\SPSSuite\\SyMenuSuite\\VSCodium_portable_(x64)_sps\\vscodium-portable.exe\" \"%1\""
+
+
+; This will make it appear when you right click ON a folder
+; The "Icon" line can be removed if you don't want the icon to appear
+[HKEY_CLASSES_ROOT\Directory\shell\vscodium]
+@="Open Folder as V&SCodium Project"
+"Icon"="\"C:\\Portable\\SyMenu\\ProgramFiles\\SPSSuite\\SyMenuSuite\\VSCodium_portable_(x64)_sps\\vscodium-portable.exe\",0"
+[HKEY_CLASSES_ROOT\Directory\shell\vscodium\command]
+@="\"C:\\Portable\\SyMenu\\ProgramFiles\\SPSSuite\\SyMenuSuite\\VSCodium_portable_(x64)_sps\\vscodium-portable.exe\" \"%1\""
+
+
+; This will make it appear when you right click INSIDE a folder
+; The "Icon" line can be removed if you don't want the icon to appear
+[HKEY_CLASSES_ROOT\Directory\Background\shell\vscodium]
+@="Open Folder as V&SCodium Project"
+"Icon"="\"C:\\Portable\\SyMenu\\ProgramFiles\\SPSSuite\\SyMenuSuite\\VSCodium_portable_(x64)_sps\\vscodium-portable.exe\",0"
+[HKEY_CLASSES_ROOT\Directory\Background\shell\vscodium\command]
+@="\"C:\\Portable\\SyMenu\\ProgramFiles\\SPSSuite\\SyMenuSuite\\VSCodium_portable_(x64)_sps\\vscodium-portable.exe\" \"%V\""
